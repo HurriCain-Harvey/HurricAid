@@ -69,9 +69,19 @@ export class MapComponent implements OnInit, OnDestroy {
         this.lng = data.longitude;
       });
     }
+    this.mapRefresh();
+    setInterval(() => {
+      this.ngOnDestroy();
+      this.mapRefresh();
+    }, 300000);
+  }
+  ngOnDestroy() {
+    this.markers = [];
+  }
+  mapRefresh() {
     // query all the pins from db and push to markers
     this.http.get('/getPins').subscribe((pins: any) => {
-      for (let i = 0; i < pins.length; i ++) {
+      for (let i = 0; i < pins.length; i++) {
         this.markers.push({
           id: pins[i].id,
           help: pins[i].help,
@@ -86,9 +96,6 @@ export class MapComponent implements OnInit, OnDestroy {
         });
       }
     });
-  }
-  ngOnDestroy() {
-    this.markers = [];
   }
   sendSupply() {
     this.ngOnDestroy();

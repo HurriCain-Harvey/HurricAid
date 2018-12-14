@@ -33,13 +33,13 @@ export class SplashComponent implements OnInit {
   this.map.getLocation().subscribe(data => {
   this.lat = data.latitude;
   this.lng = data.longitude;
-  this.http.get((`https://api.predicthq.com/v1/events/?category=severe-weather,disasters,terror&within=10km@${this.lat},${this.lng}`), 
+  this.http.get((`https://api.predicthq.com/v1/events/?category=severe-weather,disasters,terror&within=50km@${this.lat},${this.lng}`), 
     { headers: { Authorization: `Bearer ${keys.predictHQ}` }})
       .subscribe((response: any) => {
         if (response['results'].length === 0){
           this.newsDisplay = true;
         } else {
-          this.article = response.results[0].title + ' ' + response.results[0].description;
+          this.article = response.results[0].title + ' (Click for more information.)';
         }
       })
     })

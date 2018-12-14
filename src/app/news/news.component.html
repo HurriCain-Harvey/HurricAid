@@ -1,21 +1,39 @@
 <div class="newsfeed">
-  <div class="newsfeed-header">
-    Today's Local News
-  </div>
-  <div *ngIf="newsDisplay">No disaster news today!</div>
-  <div>
-    <ul class="newsfeed-body">
-      <li *ngFor="let article of articles">
-        <span class="single-article-time">
-          {{article.updated.slice(12, 16)}}
-        </span>
-        <span class="single-article-desc">
-          {{article.description}}
-        </span>
-      </li>
-    </ul>
-  </div>
-  
-  
+  <br><div class="newsfeed-header">
+    News In Your Area
+  </div><br>
+  <agm-map
+    #gm
+    [scrollwheel]="null"
+    [streetViewControl]="false"
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [gestureHandling]="gestureHandling"
+  >
+    <div *ngFor="let m of markers;let i = index">
+      <agm-marker [animation]="'DROP'" [latitude]="m.lat" [longitude]="m.lng"
+        (markerClick)="gm.lastOpen?.close(); gm.lastOpen = infoWindow">
+        <agm-info-window #infoWindow>
+          <b>#{{i + 1}} {{m.title}}</b>
+          <br>
+          <b>Start: </b>{{m.start}}
+          <b>End: </b>{{m.end}}
+        </agm-info-window>
+      </agm-marker>
+    </div>
+  </agm-map>
 </div>
 
+<div class="news">
+  <div *ngIf="newsDisplay">No disaster news today</div>
+  <div class="articlez" *ngFor="let m of markers;let i = index">
+    <b><span class="single-article-time">
+      #{{i + 1}} - At {{m.start}} til {{m.end}}: 
+    </span></b>
+    <i><span class="single-article-desc">
+      {{m.desc}}
+    </span></i>
+    <br>
+  </div>
+</div>

@@ -9,7 +9,7 @@ import { Component , OnInit, Inject, PLATFORM_ID} from '@angular/core';
 })
 export class AppComponent implements OnInit {
   login: boolean = false;
-  title = 'emergency';
+  title = 'HurricAid';
 
     public ngOnInit(): void {
         if (!isPlatformBrowser(this.platformId)) {

@@ -13,6 +13,8 @@ import { LoginComponent } from '../login/login.component';
 export class SignupComponent implements OnInit {
   signupSuccess = false;
   model: any = {};
+  hide: boolean = false;
+
   signUpForm: FormGroup = new FormGroup({
     firstName: new FormControl(null, [Validators.required]),
     lastName: new FormControl(null, [Validators.required]),

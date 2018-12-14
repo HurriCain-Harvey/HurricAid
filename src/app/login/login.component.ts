@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   loggedIn: boolean = false;
   model: any = {};
+  hide: boolean = false;
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 

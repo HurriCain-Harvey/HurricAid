@@ -43,7 +43,7 @@ img {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-name: ticker;
-  animation-duration: 15s;
+  animation-duration: 25s;
 }
 .ticker-move:hover{
   animation-play-state: paused;
@@ -73,7 +73,7 @@ img {
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: ticker;
-    animation-duration: 15s;
+    animation-duration: 25s;
   }
   .ticker-move:hover{
     animation-play-state: paused;
